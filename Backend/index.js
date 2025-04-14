@@ -31,7 +31,7 @@ server.use(cors({
   exposedHeaders:['X-Total-Count']
 }))
 server.use(express.json());
-server.use('/api/product' , productroter )
+server.use('/product' , productroter )
 server.use('/category' , categoryrouter)
 server.use('/brands' , brandsrouter)
 server.use('/users',  usersRouter)
