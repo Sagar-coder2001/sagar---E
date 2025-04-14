@@ -1,7 +1,7 @@
 // controller/stripe.js
 require('dotenv').config();
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // Ensure you have your Stripe secret key in your environment variables
+const stripe = require('stripe')(process.env.STRIPE_API_KEY); // Ensure you have your Stripe secret key in your environment variables
 
 exports.createCheckoutSession = async (req, res) => {
   try {

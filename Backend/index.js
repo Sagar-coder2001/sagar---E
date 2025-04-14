@@ -25,6 +25,9 @@ server.use(express.json({ limit: '5mb' })); // or more if needed
 server.use(express.urlencoded({ extended: true, limit: '5mb' }));
 
 server.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   exposedHeaders:['X-Total-Count']
 }))
 server.use(express.json());
