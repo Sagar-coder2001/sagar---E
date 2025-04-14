@@ -1,0 +1,10 @@
+# Ignore environment variables and system files
+Backend/.env
+
+# Ignore dependencies
+node_modules/
+Backend/node_modules/
+
+# Optional: ignore OS/editor files
+.DS_Store
+*.log
