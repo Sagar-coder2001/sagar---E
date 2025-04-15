@@ -31,7 +31,6 @@ server.use(cors({
   exposedHeaders:['X-Total-Count']
 }))
 
-
 server.use(express.json());
 server.use('/product' , productroter )
 server.use('/category' , categoryrouter)
@@ -41,7 +40,6 @@ server.use('/auth', authRouter)
 server.use('/cart', cartrouter)
 server.use('/order', orderrouter)
 server.use('/api/stripe', stripechekout);
-
 
 main().catch(err =>  console.log(err))
 
