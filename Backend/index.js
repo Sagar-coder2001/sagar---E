@@ -25,11 +25,13 @@ server.use(express.json({ limit: '5mb' })); // or more if needed
 server.use(express.urlencoded({ extended: true, limit: '5mb' }));
 
 server.use(cors({
-  origin: '*',
+  origin: 'https://sagar-e.onrender.com',
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   exposedHeaders:['X-Total-Count']
 }))
+
+
 server.use(express.json());
 server.use('/product' , productroter )
 server.use('/category' , categoryrouter)
@@ -39,8 +41,6 @@ server.use('/auth', authRouter)
 server.use('/cart', cartrouter)
 server.use('/order', orderrouter)
 server.use('/api/stripe', stripechekout);
-
-
 
 
 main().catch(err =>  console.log(err))
