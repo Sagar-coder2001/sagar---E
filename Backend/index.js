@@ -53,7 +53,13 @@ async function main() {
     console.log('database connected')
   }
 
+  server.get('/', (req, res) => {
+    res.send({ status: 'Backend is running!' });
+  });
+  
 
-  server.listen(8080, () => {
+  const PORT = process.env.PORT || 8080;
+
+  server.listen(PORT, () => {
     console.log('server started')
   })
