@@ -56,6 +56,10 @@ async function main() {
   server.get('/', (req, res) => {
     res.send({ status: 'Backend is running!' });
   });
+
+  server.get('/favicon.ico', (req, res) => {
+    res.status(204).end(); // Just silently ignore the favicon request
+  });
   
 
   const PORT = process.env.PORT || 8080;
