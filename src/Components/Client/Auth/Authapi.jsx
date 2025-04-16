@@ -2,7 +2,7 @@
 
 export function createUser(userData) {
     return new Promise(async (resolve) => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}auth/signup`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/signup`, {
         method: 'POST',
         body: JSON.stringify(userData),
         headers: {
