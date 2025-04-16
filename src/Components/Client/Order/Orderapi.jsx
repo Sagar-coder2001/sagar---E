@@ -5,7 +5,7 @@ export function addOrder(order) {
   return new Promise(async (resolve, reject) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:8080/order', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/order`, {
         method: 'POST',
         body: JSON.stringify(order),
         headers: {
@@ -36,7 +36,7 @@ export function addOrder(order) {
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
     const token = localStorage.getItem('token');
-    const response = await fetch('http://localhost:8080/order/' + order.id, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/order/` + order.id, {
       method: 'PATCH',
       body: JSON.stringify(order),
       headers: { 
@@ -52,7 +52,7 @@ export function fetchAllOrders() {
   return new Promise(async (resolve, reject) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('http://localhost:8080/order', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/order`, {
         method: 'GET',
         headers: { 
           'Authorization': `Bearer ${token}`,
