@@ -17,7 +17,7 @@ export default function BrandMarquee() {
 
   return (
     <div className="w-full bg-white py-4 overflow-hidden mt-5">
-      <h4 className="text-center text-2xl shadow-2xl mb-10">Our Brands</h4>
+      <h4 className="text-center text-4xl font-bold tracking-tight text-gray-900">Our Brands</h4>
       <marquee behavior="scroll" direction="left" scrollamount="5" className="flex gap-6">
         {brands.map((brand, index) => (
           <div key={index} className="mx-4 inline-block">

@@ -74,7 +74,7 @@ const Checkoutpage = () => {
     dispatch(addOrderToAsync(order));
 
    // 2. Create Stripe session
-  const response = await fetch('http://localhost:8080/api/stripe/create-checkout-session', {
+  const response = await fetch('https://sagar-e.onrender.com/api/stripe/create-checkout-session', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
