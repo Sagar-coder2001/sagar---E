@@ -86,7 +86,7 @@ const Checkoutpage = () => {
   console.log(session)
 
   // 3. Redirect to Stripe
-  const stripe = await loadStripe("pk_test_51RCzRFBDCuSQQFAWk7d3cwCuqLMafFu9Ak9Nr9IRXFqL35ht7EkD0adNjkWi95IHThItdesYhmGZiyJKXUttW1bB00lOUZckkt");
+  const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
   const result = await stripe.redirectToCheckout({
     sessionId: session.id,
   });
