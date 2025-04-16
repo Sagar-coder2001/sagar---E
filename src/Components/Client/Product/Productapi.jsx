@@ -30,7 +30,7 @@ export function fetchproductsbycategory() {
 export function fetchproductsbybrand() {
   return new Promise(async (resolve) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/brands`, {
+    const response = await fetch('https://sagar-e.onrender.com/cart/brands', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -98,7 +98,7 @@ export function fetchproductbyfilter(filter = {}, sort = {}) {
   queryString = queryString.replace(/&$/, '');
 
   // ✅ Final URL
-  const url = `${process.env.REACT_APP_API_URL}/product?${queryString}`;
+  const url = `https://sagar-e.onrender.com/cart/product?${queryString}`;
 
   return new Promise(async (resolve, reject) => {
     const token = localStorage.getItem('token');
@@ -134,7 +134,7 @@ export function fetchproductbyfilter(filter = {}, sort = {}) {
 export function createProduct(product) {
   return new Promise(async (resolve) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/product`, {
+    const response = await fetch('https://sagar-e.onrender.com/cart/product', {
       method: 'POST',
       body: JSON.stringify(product),
       'Authorization': `Bearer ${token}`,
@@ -152,7 +152,7 @@ export function updateProduct(update) {
   return new Promise(async (resolve) => {
     const token = localStorage.getItem('token');
     const response = await fetch(
-     `${process.env.REACT_APP_API_URL}/product/${update.id}`,
+     `https://sagar-e.onrender.com/cart/product/${update.id}`,
       {
         method: 'PATCH',
         body: JSON.stringify(update),

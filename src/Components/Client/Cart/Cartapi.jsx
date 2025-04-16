@@ -2,7 +2,7 @@
 export function addToCart(item) {
     return new Promise(async (resolve) => {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/cart`, {
+      const response = await fetch('https://sagar-e.onrender.com/cart', {
         method: 'POST',
         body: JSON.stringify(item),
         headers: {
@@ -18,7 +18,7 @@ export function addToCart(item) {
       return new Promise(async (resolve, reject) => {
         try {
           const token = localStorage.getItem('token');
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/cart?user=${id}`, {
+          const response = await fetch(`https://sagar-e.onrender.com/cart?user=${id}`, {
            headers: {
           'Authorization': `Bearer ${token}`,
           'content-type': 'application/json' },
@@ -39,7 +39,7 @@ export function addToCart(item) {
       return new Promise(async (resolve, reject) => {
         try {
           const token = localStorage.getItem('token');
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/cart/` + update.id, {
+          const response = await fetch(`https://sagar-e.onrender.com/cart/` + update.id, {
             method: 'PATCH',
             body: JSON.stringify(update),
             headers: {
@@ -63,7 +63,7 @@ export function addToCart(item) {
       export function deleteCart(itemId) {
         return new Promise(async (resolve) => {
           const token = localStorage.getItem('token');
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/${itemId}`, {
+          const response = await fetch(`https://sagar-e.onrender.com/cart/${itemId}`, {
             method: 'DELETE',
             headers: { 
           'Authorization': `Bearer ${token}`,
