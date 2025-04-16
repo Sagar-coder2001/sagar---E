@@ -43,7 +43,7 @@ export default function Signuppage() {
   
       // Navigate after short delay so user sees the toast
       const timeout = setTimeout(() => {
-        navigate('/');
+        navigate('/Loginpage');
       }, 2000);
   
       return () => clearTimeout(timeout); // cleanup
@@ -55,7 +55,8 @@ export default function Signuppage() {
       <ScrollTop />
       <ToastContainer />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mt-20">
-        <div className="border-1 sm:mx-auto sm:w-full sm:max-w-sm px-2 py-1 rounded-2xl">
+      <div className="border border-gray-200 shadow-lg sm:mx-auto sm:w-full sm:max-w-sm px-6 py-4 rounded-2xl bg-white">
+
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <UserCircleIcon className="w-10 h-10 mx-auto" />
             <h2 className="mt-5 text-center text-2xl/9 font-bold tracking-tight text-gray-900">

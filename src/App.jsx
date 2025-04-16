@@ -40,6 +40,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Homepage />} />
+
           <Route path='*' element={<Pagenotfound />} />
           <Route path='/Cartpage' element={<Cartpage />} />
           <Route path='/Loginpage' element={<Loginpage />} />

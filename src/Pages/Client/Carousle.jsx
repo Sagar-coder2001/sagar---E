@@ -1,5 +1,5 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Carousle() {
   const [index, setIndex] = useState(0);
@@ -30,6 +30,14 @@ export default function Carousle() {
   const nextSlide = () => {
     setIndex((prevIndex) => (prevIndex + 1) % slide.length);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % slide.length);
+    }, 3000); // Change slide every 5000ms (5 seconds)
+
+    return () => clearInterval(interval); // Clear interval on unmount
+  }, [slide.length]);
 
   return (
     <div className="relative max-w-full mx-5 overflow-hidden h-80 mt-20">

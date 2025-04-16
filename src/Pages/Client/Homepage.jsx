@@ -26,6 +26,7 @@ import { GridLoader } from 'react-spinners'
 import Carousle from './Carousle'
 import { selectLoggedInUser } from '../../Features/Authslice'
 import ScrollTop from '../../Components/Client/Common/Scolltop'
+import BrandCarousel from './BrandCarousel'
 
 const sortOptions = [
   { name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
@@ -106,6 +107,7 @@ export default function Homepage() {
     const maxPage = Math.ceil(totalItems / itemsPerPage)
     if (pageNumber < 1 || pageNumber > maxPage) return
 
+    window.scrollTo({ top: 10, behavior: 'smooth' });
     setPage(pageNumber)
   }
 
@@ -482,8 +484,7 @@ export default function Homepage() {
           </div>
         </div>
 
-
-
+        <BrandCarousel/>
       </Protected>
     </Layout>
 

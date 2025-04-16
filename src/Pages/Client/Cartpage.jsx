@@ -33,9 +33,6 @@ export default function Cartpage() {
     dispatch(deleteItemAsync(item.id));
   }
 
-
-
-
   return (
     <Layout>
       <ScrollTop />

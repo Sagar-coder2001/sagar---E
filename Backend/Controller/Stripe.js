@@ -23,8 +23,8 @@ exports.createCheckoutSession = async (req, res) => {
       mode: 'payment',
       line_items,
       customer_email: user.email, // optional
-      success_url: `http://localhost:3000/Ordersuccesspage`,
-      cancel_url: `http://localhost:3000/cart`,
+      success_url: `https://sagar-e.vercel.app/Ordersuccesspage`,
+      cancel_url: `https://sagar-e.vercel.app/cart`,
     });
 
     res.status(200).json({ id: session.id });

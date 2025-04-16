@@ -30,26 +30,23 @@ export default function Loginpage() {
     );
   };
 
-  if (user) {
-    if (user.role === 'admin') {
-      return <Navigate to="/Adminhomepage" />;
-    } else {
-      return <Navigate to="/" />;
+
+
+    if (user) {
+      if (user.role === 'admin') {
+        return <Navigate to="/Adminhomepage" />;
+      } else {
+        return <Navigate to="/" />;
+      }
     }
-  }
 
-  // useEffect(() => {
-  //   window.location.reload();
-  // },[])
-
-
-  
 
   return (
     <Layout>
       <ScrollTop/>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mt-20 mb-10">
-        <div className="border-1 sm:mx-auto sm:w-full sm:max-w-sm px-4 py-1 rounded-2xl">
+      <div className="border border-gray-200 shadow-lg sm:mx-auto sm:w-full sm:max-w-sm px-6 py-4 rounded-2xl bg-white">
+
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <UserCircleIcon className="w-10 h-10 mx-auto" />
             <h2 className="mt-3 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
