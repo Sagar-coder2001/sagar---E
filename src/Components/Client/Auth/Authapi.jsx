@@ -2,7 +2,7 @@
 
 export function createUser(userData) {
     return new Promise(async (resolve) => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/signup`, {
+      const response = await fetch('https://sagar-e.onrender.com/auth/signup', {
         method: 'POST',
         body: JSON.stringify(userData),
         headers: {
@@ -19,7 +19,7 @@ export function checkUser (logininfo) {
         // const password = logininfo.password
         const token = localStorage.getItem('token')
         try{
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
+          const response = await fetch('https://sagar-e.onrender.com/auth/login', {
             method: 'POST',
             body: JSON.stringify(logininfo),
             headers: {
@@ -49,7 +49,7 @@ export function loginUser(loginInfo) {
     return new Promise(async (resolve, reject) => {
       const token = localStorage.getItem('token')
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
+        const response = await fetch('https://sagar-e.onrender.com/users', {
           method: 'POST',
           body: JSON.stringify(loginInfo),
           headers: {
@@ -75,7 +75,7 @@ export function loginUser(loginInfo) {
   export function updateuser(update) {
     return new Promise(async (resolve) => {
       const token = localStorage.getItem('token')
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${update.id}`,{
+      const response = await fetch(`https://sagar-e.onrender.com/users/${update.id}`,{
         method: 'PATCH',
         body: JSON.stringify(update),
         headers: { 
