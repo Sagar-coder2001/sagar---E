@@ -3,7 +3,7 @@
 export function fetchUserorder(id) {
   const token = localStorage.getItem('token');
   return new Promise(async (resolve) => {
-    const response = await fetch(`https://sagar-e.onrender.com/cart/order/` + id, {
+    const response = await fetch(`https://sagar-e.onrender.com/order/` + id, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -21,7 +21,7 @@ export function fetchUserorder(id) {
     return new Promise(async (resolve, reject) => {
       const token = localStorage.getItem('token');
       try {
-        const response = await fetch(`https://sagar-e.onrender.com/cart/users/` + id , {
+        const response = await fetch(`https://sagar-e.onrender.com/users/` + id , {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -44,7 +44,7 @@ export function fetchUserorder(id) {
   export function updateUser(update) {
     return new Promise(async (resolve) => {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://sagar-e.onrender.com/cart/users/${update.id}`,{
+      const response = await fetch(`https://sagar-e.onrender.com/users/${update.id}`,{
         method: 'PATCH',
         body: JSON.stringify(update),
         headers: {
