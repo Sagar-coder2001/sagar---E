@@ -3,7 +3,8 @@
 
 export function addOrder(order) {
   return new Promise(async (resolve, reject) => {
-    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const token = user ? JSON.parse(user).token : null; // Extract token from user object
     try {
       const response = await fetch('https://sagar-e.onrender.com/order', {
         method: 'POST',
@@ -35,7 +36,8 @@ export function addOrder(order) {
 
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
-    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const token = user ? JSON.parse(user).token : null; // Extract token from user object
     const response = await fetch(`https://sagar-e.onrender.com/order/` + order.id, {
       method: 'PATCH',
       body: JSON.stringify(order),
@@ -50,7 +52,8 @@ export function updateOrder(order) {
 
 export function fetchAllOrders() {
   return new Promise(async (resolve, reject) => {
-    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const token = user ? JSON.parse(user).token : null; // Extract token from user object
     try {
       const response = await fetch('https://sagar-e.onrender.com/order', {
         method: 'GET',

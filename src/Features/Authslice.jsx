@@ -27,12 +27,6 @@ export const checkUserAsync = createAsyncThunk(
       const response = await checkUser(loginInfo);
       if (response?.data) {
         const user = response.data;
-        const { token, role, id } = user;
-
-        // Store everything in localStorage
-        localStorage.setItem('token', token);
-        localStorage.setItem('role', JSON.stringify(role));
-        localStorage.setItem('id', JSON.stringify(id));
         localStorage.setItem('user', JSON.stringify(user)); // <-- Store full user
       }
       return response.data;

@@ -44,8 +44,8 @@ export default function Loginpage() {
   return (
     <Layout>
       <ScrollTop/>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mt-20 mb-10">
-      <div className="border border-gray-200 shadow-lg sm:mx-auto sm:w-full sm:max-w-sm px-6 py-4 rounded-2xl bg-white">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 bg-[#fbfff9] mt-20 mb-10">
+      <div className="border border-gray-200 shadow-lg sm:mx-auto sm:w-full sm:max-w-sm px-6 py-4 rounded-2xl">
 
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <UserCircleIcon className="w-10 h-10 mx-auto" />
@@ -127,7 +127,7 @@ export default function Loginpage() {
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Sign in
+                 {status === 'loading' ? 'Loading...' : 'Sign in'}
                 </button>
               </div>
             </form>

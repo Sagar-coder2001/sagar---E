@@ -21,10 +21,12 @@ import Adminproductformpage from './Pages/Admin/Adminproductformpage';
 import AdminOrders from './Pages/Admin/Adminorderpage';
 import { fetchLoggedInUserAsync, fetchUserOrderToAsync } from './Features/Userslice';
 import Admindashboardpage from './Pages/Admin/Admindashboardpage';
+import Adminproductdetailpage from './Pages/Admin/Adminproductdetailpage';
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
+  console.log('User:', user);  // Log the user object to check its structure
 
   useEffect(() => {
     if (user) {  // Check if user is defined and has an ID
@@ -60,6 +62,8 @@ function App() {
           <Route path='/Adminproductformpage' element={<Adminproductformpage />} />
           <Route path='/Adminproductformpage/edit/:id' element={<Adminproductformpage />} />
           <Route path='/Adminorderpage' element={<AdminOrders />} />
+          <Route path='/Adminproductdetailpage/:id' element={<Adminproductdetailpage />} />
+
         </Routes>
       </BrowserRouter>
     </>

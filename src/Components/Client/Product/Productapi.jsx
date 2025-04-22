@@ -1,7 +1,8 @@
 
 export function fetchproductsbycategory() {
   return new Promise(async (resolve, reject) => {
-    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const token = user ? JSON.parse(user).token : null; // Extract token from user object
     try {
       const response = await fetch('https://sagar-e.onrender.com/category', {
         method: 'GET',
@@ -29,8 +30,9 @@ export function fetchproductsbycategory() {
 
 export function fetchproductsbybrand() {
   return new Promise(async (resolve) => {
-    const token = localStorage.getItem('token');
-    const response = await fetch('https://sagar-e.onrender.com/brands', {
+    const user = localStorage.getItem('user');
+    const token = user ? JSON.parse(user).token : null; // Extract token from user object
+    const response = await fetch('http://localhost:5173/brands', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -44,7 +46,8 @@ export function fetchproductsbybrand() {
 
 export function fetchproductsById(id) {
   return new Promise(async (resolve, reject) => {
-    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const token = user ? JSON.parse(user).token : null; // Extract token from user object
     try {
       const response = await fetch(`https://sagar-e.onrender.com/product/${id}`, {
         method: 'GET',
@@ -101,7 +104,8 @@ export function fetchproductbyfilter(filter = {}, sort = {}) {
   const url = `https://sagar-e.onrender.com/product?${queryString}`;
 
   return new Promise(async (resolve, reject) => {
-    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const token = user ? JSON.parse(user).token : null; // Extract token from user object
 
     try {
       const response = await fetch(url, {
@@ -133,7 +137,8 @@ export function fetchproductbyfilter(filter = {}, sort = {}) {
 
 export function createProduct(product) {
   return new Promise(async (resolve) => {
-    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const token = user ? JSON.parse(user).token : null; // Extract token from user object
     const response = await fetch('https://sagar-e.onrender.com/product', {
       method: 'POST',
       body: JSON.stringify(product),
@@ -150,7 +155,8 @@ export function createProduct(product) {
 
 export function updateProduct(update) {
   return new Promise(async (resolve) => {
-    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const token = user ? JSON.parse(user).token : null; // Extract token from user object
     const response = await fetch(
      `https://sagar-e.onrender.com/product/${update.id}`,
       {

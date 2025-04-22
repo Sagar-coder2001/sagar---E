@@ -29,10 +29,11 @@ export default function Navbar() {
 
   const dispatch = useDispatch();
 
-  const role = JSON.parse(localStorage.getItem('role'));
+  const user = localStorage.getItem('user');
+  const role = user ? JSON.parse(user).role : null; // Extract token from user object
 
   const changeTheme = () => {
-    if (bgcolor == 'black') {
+    if (bgcolor == '#1D1616') {
       dispatch(white());
       localStorage.removeItem('theme');
       setChangeicon(false)
@@ -46,7 +47,7 @@ export default function Navbar() {
 
   return (
     <Disclosure as="nav" >
-      <div className='fixed top-0 left-0  right-0 z-50' style={{ backgroundColor: '#FAF1E6' }}>
+      <div className='fixed top-0 left-0  right-0 z-50' style={{ backgroundColor: role === 'admin' ? bgcolor : '#D4E7C5' }}>
 
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between z-300">
@@ -110,9 +111,7 @@ export default function Navbar() {
 
 
               </Link>
-              {
-                role !== 'user' && (
-                  <>
+      
 
                     <Link to={'Loginpage'}>
                       <button
@@ -123,20 +122,28 @@ export default function Navbar() {
                         Login
                       </button>
                     </Link>
-                    {changeicon ? (
+
+                    {
+                      role === 'admin' && (
+                        <>
+                            {changeicon ? (
                       <MoonIcon
                         onClick={changeTheme}
-                        className="h-5 w-5 text-gray-800 cursor-pointer mx-2"
+                        className="h-5 w-5 text-white cursor-pointer mx-2"
                       />
                     ) : (
                       <SunIcon
                         onClick={changeTheme}
-                        className="h-5 w-5 text-yellow-500 cursor-pointer mx-2"
+                        className="h-5 w-5 text-gray-900 cursor-pointer mx-2"
                       />
                     )}
-                  </>
-                )
-              }
+                        </>
+                      )
+
+                      
+                    }
+                
+  
 
 
               {/* Profile dropdown */}

@@ -1,7 +1,8 @@
 
 export function addToCart(item) {
     return new Promise(async (resolve) => {
-      const token = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
+      const token = user ? JSON.parse(user).token : null; // Extract token from user object
       const response = await fetch('https://sagar-e.onrender.com/cart', {
         method: 'POST',
         body: JSON.stringify(item),
@@ -17,7 +18,8 @@ export function addToCart(item) {
   export function fetchItemsById(id) {
       return new Promise(async (resolve, reject) => {
         try {
-          const token = localStorage.getItem('token');
+          const user = localStorage.getItem('user');
+          const token = user ? JSON.parse(user).token : null; // Extract token from user object
           const response = await fetch(`https://sagar-e.onrender.com/cart?user=${id}`, {
            headers: {
           'Authorization': `Bearer ${token}`,
@@ -38,7 +40,8 @@ export function addToCart(item) {
     export function updateCart(update) {
       return new Promise(async (resolve, reject) => {
         try {
-          const token = localStorage.getItem('token');
+          const user = localStorage.getItem('user');
+          const token = user ? JSON.parse(user).token : null; // Extract token from user object
           const response = await fetch(`https://sagar-e.onrender.com/cart/` + update.id, {
             method: 'PATCH',
             body: JSON.stringify(update),
@@ -62,7 +65,8 @@ export function addToCart(item) {
     
       export function deleteCart(itemId) {
         return new Promise(async (resolve) => {
-          const token = localStorage.getItem('token');
+          const user = localStorage.getItem('user');
+          const token = user ? JSON.parse(user).token : null; // Extract token from user object
           const response = await fetch(`https://sagar-e.onrender.com/cart/${itemId}`, {
             method: 'DELETE',
             headers: { 

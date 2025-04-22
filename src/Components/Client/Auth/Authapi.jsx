@@ -17,7 +17,8 @@ export function checkUser (logininfo) {
     return new Promise(async (resolve , reject) => {
         // const email = logininfo.email;
         // const password = logininfo.password
-        const token = localStorage.getItem('token')
+        const user = localStorage.getItem('user');
+        const token = user ? JSON.parse(user).token : null; // Extract token from user object
         try{
           const response = await fetch('https://sagar-e.onrender.com/auth/login', {
             method: 'POST',
@@ -47,7 +48,8 @@ export function checkUser (logininfo) {
 
 export function loginUser(loginInfo) {
     return new Promise(async (resolve, reject) => {
-      const token = localStorage.getItem('token')
+      const user = localStorage.getItem('user');
+      const token = user ? JSON.parse(user).token : null; // Extract token from user object
       try {
         const response = await fetch('https://sagar-e.onrender.com/users', {
           method: 'POST',
@@ -74,7 +76,8 @@ export function loginUser(loginInfo) {
 
   export function updateuser(update) {
     return new Promise(async (resolve) => {
-      const token = localStorage.getItem('token')
+      const user = localStorage.getItem('user');
+      const token = user ? JSON.parse(user).token : null; // Extract token from user object
       const response = await fetch(`https://sagar-e.onrender.com/users/${update.id}`,{
         method: 'PATCH',
         body: JSON.stringify(update),
@@ -91,7 +94,8 @@ export function loginUser(loginInfo) {
 
   export function signout(userId) {
     return new Promise(async (resolve, reject) => {
-      const token = localStorage.getItem('token')
+      const user = localStorage.getItem('user');
+      const token = user ? JSON.parse(user).token : null; // Extract token from user object
       try {
         const response = await fetch('/auth/logout', {
           headers:{

@@ -40,7 +40,7 @@ export default function Carousle() {
   }, [slide.length]);
 
   return (
-    <div className="relative max-w-full mx-5 overflow-hidden h-80 mt-20">
+    <div className="relative max-w-full mx-5 overflow-hidden h-80 pt-20">
       {/* Carousel Container */}
       <div className="relative h-full flex items-center justify-center">
         {/* Previous Button */}
