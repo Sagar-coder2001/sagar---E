@@ -4,14 +4,13 @@ import { selectLoggedInUser } from '../../Features/Authslice';
 
 function ProtectedAdmin({ children }) {
   const user = useSelector(selectLoggedInUser);
-  const role = user?.role;
 
   if (!user) {
     return <Navigate to="/Loginpage" replace={true}></Navigate>;
   }
-  if (role =='admin') {
-    return <Navigate to="/Adminhomepage" replace={true}></Navigate>;
-  }
+  // if (role =='admin') {
+  //   return <Navigate to="/Adminhomepage" replace={true}></Navigate>;
+  // }
   return children;
 }
 

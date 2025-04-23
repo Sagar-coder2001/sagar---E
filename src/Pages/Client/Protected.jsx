@@ -4,8 +4,8 @@ import { selectLoggedInUser } from '../../Features/Authslice';
 
 function Protected({ children }) {
   const user = useSelector(selectLoggedInUser);
-  const parsedUser = user ? user : null;
-  const role = parsedUser?.role;
+  const role = user.role;
+
 
   // Not logged in? Redirect to login
   if (!user) {
@@ -14,7 +14,7 @@ function Protected({ children }) {
 
   // You can add custom logic here if you only want certain roles
   // For example, if this route is only for admin:
-  // if (role !== 'admin') return <Navigate to="/" replace />;
+
 
   // User is allowed, render the protected content
   return children;

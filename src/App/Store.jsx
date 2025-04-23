@@ -6,6 +6,7 @@ import  Orderslice  from '../Features/Orderslice'
 import  Userslice  from '../Features/Userslice'
 import  Themeslice  from '../Features/Themslice'
 
+
 export const store = configureStore({
   reducer: {
     product: Productslice,
