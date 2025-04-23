@@ -32,7 +32,7 @@ export function fetchproductsbybrand() {
   return new Promise(async (resolve) => {
     const user = localStorage.getItem('user');
     const token = user ? JSON.parse(user).token : null; // Extract token from user object
-    const response = await fetch('http://localhost:5173/brands', {
+    const response = await fetch('https://sagar-e.onrender.com/brands', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`,
