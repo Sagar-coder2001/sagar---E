@@ -4,25 +4,19 @@ import { selectLoggedInUser } from '../../Features/Authslice';
 
 function Protected({ children }) {
   const user = useSelector(selectLoggedInUser);
-  const parsedUser = user ? JSON.parse(user) : null;
+  const parsedUser = user ? user : null;
   const role = parsedUser?.role;
 
+  // Not logged in? Redirect to login
   if (!user) {
-    // Not logged in? Redirect to login
     return <Navigate to="/Loginpage" replace />;
   }
 
-  // Redirect admin to Adminhomepage
-  if (role === 'admin') {
-    return <Navigate to="/Adminhomepage" replace />;
-  }
+  // You can add custom logic here if you only want certain roles
+  // For example, if this route is only for admin:
+  // if (role !== 'admin') return <Navigate to="/" replace />;
 
-  // Redirect all other users to main homepage
-  if (role !== 'admin') {
-    return <Navigate to="/" replace />;
-  }
-
-  // If no redirection is needed (e.g., already on correct page), render children
+  // User is allowed, render the protected content
   return children;
 }
 

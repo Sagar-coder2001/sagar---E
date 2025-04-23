@@ -4,7 +4,7 @@ import { selectLoggedInUser } from '../../Features/Authslice';
 
 function ProtectedAdmin({ children }) {
   const user = useSelector(selectLoggedInUser);
-  const role = localStorage.getItem(JSON.stringify('role'))
+  const role = user?.role;
 
   if (!user) {
     return <Navigate to="/Loginpage" replace={true}></Navigate>;
