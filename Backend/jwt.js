@@ -29,7 +29,7 @@ exports.jwtmiddleware = (req, res, next) => {
 
 exports.generateToken = (userdata) => {
     const payload = { id: userdata._id, email: userdata.email };  // Specify the data you need
-    return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '100d' });
+    return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '30h' });
 };
 
 // module.exports = { jwtmiddleware, generateToken };
