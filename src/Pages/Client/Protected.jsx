@@ -4,7 +4,6 @@ import { selectLoggedInUser } from '../../Features/Authslice';
 
 function Protected({ children }) {
   const user = useSelector(selectLoggedInUser);
-  const role = user.role;
 
 
   // Not logged in? Redirect to login
