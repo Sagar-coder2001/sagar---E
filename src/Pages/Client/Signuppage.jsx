@@ -50,9 +50,10 @@ export default function Signuppage() {
       return () => clearTimeout(timeout); // cleanup
     }
   
+    console.log(user)
     // Failure Case
-    if (user?.error) {
-      toast.error("email is alredy used try different", {
+    if (user?.message) {
+      toast.error(user?.message, {
         position: "top-right",
         autoClose: 3000,
       });
