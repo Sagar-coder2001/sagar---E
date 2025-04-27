@@ -9,7 +9,9 @@ const initialState = {
   loggedinuser: JSON.parse(localStorage.getItem('user')) || null,
   authstatus: 'idle',
   userstatus:'',
-  createuser:''
+  createuser:'',
+  error: null,
+  
 
 }
 export const createUserAsync = createAsyncThunk(
@@ -22,19 +24,17 @@ export const createUserAsync = createAsyncThunk(
 
 export const checkUserAsync = createAsyncThunk(
   'user/checkUser',
-  async (loginInfo) => {
+  async (loginInfo, { rejectWithValue }) => {
     try {
       const response = await checkUser(loginInfo);
-      if (response?.data) {
-        const user = response.data;
-        localStorage.setItem('user', JSON.stringify(user)); // <-- Store full user
-      }
       return response.data;
     } catch (error) {
-      return rejectWithValue(error);
+      console.log('❌ Login failed:', error);
+      return rejectWithValue(error?.error || "Login failed");
     }
   }
 );
+
 
 export const checkAuthAsync = createAsyncThunk(
   'user/checkAuth', 
@@ -96,7 +96,7 @@ export const Authslice = createSlice({
     })
     .addCase(checkUserAsync.rejected, (state, action) => {
       state.authstatus = 'idle';
-      state.error = action.payload; // Store error if login failed
+      state.error = action.payload;  // ✅ this will now be the error message string
     })
     .addCase(updateUserAsync.pending, (state) => {
       state.status = 'loading';
@@ -134,6 +134,7 @@ export const selectloggedinuserid = (state) => state.auth.id;
 export const authstatus = (state) => state.auth.authstatus;
 export const userstatus = (state) => state.auth.userstatus;
 export const createuser = (state) => state.auth.createuser;
+
 
 
 export default Authslice.reducer

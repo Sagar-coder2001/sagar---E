@@ -30,6 +30,8 @@ export default function Loginpage() {
     );
   };
 
+  console.log(error);
+
 
 
     if (user) {
