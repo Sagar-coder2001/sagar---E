@@ -35,6 +35,7 @@ export default function Signuppage() {
   };
 
   useEffect(() => {
+    // Success Case
     if (user?.response) {
       toast.success('Registered successfully! Redirecting to login...', {
         position: "top-right",
@@ -48,7 +49,16 @@ export default function Signuppage() {
   
       return () => clearTimeout(timeout); // cleanup
     }
+  
+    // Failure Case
+    if (user?.error) {
+      toast.error("email is alredy used try different", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    }
   }, [user, navigate]);
+  
 
   return (
     <Layout>
