@@ -8,7 +8,7 @@ function Protected({ children }) {
 
   // Not logged in? Redirect to login
   if (!user) {
-    return <Navigate to="/Signuppage" replace />;
+    return <Navigate to="/Loginpage" replace />;
   }
 
   // You can add custom logic here if you only want certain roles

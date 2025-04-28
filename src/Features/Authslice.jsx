@@ -27,6 +27,7 @@ export const checkUserAsync = createAsyncThunk(
   async (loginInfo, { rejectWithValue }) => {
     try {
       const response = await checkUser(loginInfo);
+      localStorage.setItem('user', JSON.stringify(response.data)); // Store user data in localStorage
       return response.data;
     } catch (error) {
       console.log('❌ Login failed:', error);
@@ -92,6 +93,7 @@ export const Authslice = createSlice({
       state.authstatus = 'idle';
       state.loggedinuser = action.payload; // Store user data in Redux state
       state.loggedInUserToken = action.payload.token; // Store token in Redux state
+      localStorage.setItem('user', JSON.stringify(action.payload));
 
     })
     .addCase(checkUserAsync.rejected, (state, action) => {
