@@ -20,6 +20,8 @@ import { loadStripe } from '@stripe/stripe-js';
 const Checkoutpage = () => {
   const navigate = useNavigate();
   const products = useSelector(selectCartItems);
+  const bgcolor = useSelector((state) => state.theme.value)
+  const txtcolor = useSelector((state) => state.theme.textcolor)
   // const products = useSelector((state) => state.product.data)
   const dispatch = useDispatch();
   const totalAmount = products.reduce(
@@ -113,7 +115,7 @@ const Checkoutpage = () => {
     <Layout>
       <Protected>
         <ScrollTop />
-        <div className="container mx-auto py-4 mt-20">
+        <div className="py-4 pt-20 w-full px-10" style={{ backgroundColor: bgcolor }} >
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
             {/* Personal Information - Takes 2/3 of the space on large screens */}
             <div className="lg:col-span-2 order-2 lg:order-1 px-4 py-4 rounded-xl bg-white shadow-md">

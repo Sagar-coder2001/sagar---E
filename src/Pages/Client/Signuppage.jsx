@@ -17,6 +17,9 @@ export default function Signuppage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+    const bgcolor = useSelector((state) => state.theme.value)
+    const txtcolor = useSelector((state) => state.theme.textcolor)
+  
 
   const {
     register,
@@ -65,11 +68,11 @@ export default function Signuppage() {
     <Layout>
       <ScrollTop />
       <ToastContainer />
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8 mt-20">
-        <div className="border border-gray-200 shadow-lg sm:mx-auto sm:w-full sm:max-w-sm px-6 py-4 rounded-2xl bg-white">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-30 lg:px-8" style={{ backgroundColor: bgcolor, color: txtcolor }}>
+        <div className="border border-gray-200 shadow-lg sm:mx-auto sm:w-full sm:max-w-sm px-6 py-4 rounded-2xl">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <UserCircleIcon className="w-10 h-10 mx-auto" />
-            <h2 className="mt-5 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
+            <h2 className="mt-5 text-center text-2xl/9 font-bold tracking-tight ">
               Sign up
             </h2>
           </div>
@@ -77,7 +80,7 @@ export default function Signuppage() {
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
+                <label htmlFor="email" className="block text-sm/6 font-medium">
                   Email address
                 </label>
                 <div className="mt-2">
@@ -92,7 +95,7 @@ export default function Signuppage() {
                     })}
                     name="email"
                     type="email"
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                    className="block w-full rounded-md px-3 py-1.5 text-base outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   />
                   {errors.email && (
                     <span className="text-rose-600 text-sm">{errors.email.message}</span>
@@ -101,7 +104,7 @@ export default function Signuppage() {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
+                <label htmlFor="password" className="block text-sm/6 font-medium">
                   Password
                 </label>
                 <div className="mt-2 relative">
@@ -116,16 +119,16 @@ export default function Signuppage() {
                     })}
                     name="password"
                     type={showPassword ? "text" : "password"}
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm pr-10"
+                    className="block w-full rounded-md px-3 py-1.5 text-base outline-1 outline-gray-300  focus:outline-2 focus:outline-indigo-600 sm:text-sm pr-10"
                   />
                   <div
                     className="absolute inset-y-0 right-2 flex items-center cursor-pointer"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? (
-                      <EyeSlashIcon className="h-5 w-5 text-gray-500" />
+                      <EyeSlashIcon className="h-5 w-5 " />
                     ) : (
-                      <EyeIcon className="h-5 w-5 text-gray-500" />
+                      <EyeIcon className="h-5 w-5 " />
                     )}
                   </div>
                   {errors.password && (
@@ -135,7 +138,7 @@ export default function Signuppage() {
               </div>
 
               <div>
-                <label htmlFor="confpassword" className="block text-sm/6 font-medium text-gray-900">
+                <label htmlFor="confpassword" className="block text-sm/6 font-medium">
                   Confirm Password
                 </label>
                 <div className="mt-2 relative">
@@ -148,16 +151,16 @@ export default function Signuppage() {
                     })}
                     name="confpassword"
                     type={showConfirmPassword ? "text" : "password"}
-                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm pr-10"
+                    className="block w-full rounded-md  px-3 py-1.5 text-base outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm pr-10"
                   />
                   <div
                     className="absolute inset-y-0 right-2 flex items-center cursor-pointer"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
                     {showConfirmPassword ? (
-                      <EyeSlashIcon className="h-5 w-5 text-gray-500" />
+                      <EyeSlashIcon className="h-5 w-5 " />
                     ) : (
-                      <EyeIcon className="h-5 w-5 text-gray-500" />
+                      <EyeIcon className="h-5 w-5 " />
                     )}
                   </div>
                   {errors.confpassword && (
@@ -169,7 +172,7 @@ export default function Signuppage() {
               <div>
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold  shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   disabled={isLoading}
                 >
                   {isLoading ? 'Loading...' : 'Sign up'}
@@ -177,7 +180,7 @@ export default function Signuppage() {
               </div>
             </form>
 
-            <p className="mt-10 text-center text-sm/6 text-gray-500">
+            <p className="mt-10 text-center text-sm/6 ">
               Already have an account?{' '}
               <Link to="/Loginpage">
                 <span className="font-semibold text-indigo-600 hover:text-indigo-500">

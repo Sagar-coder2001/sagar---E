@@ -25,6 +25,8 @@ export default function Productdetailspage() {
   const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || {})
   const [selectedSize, setSelectedSize] = useState(product?.sizes?.[0] || {})
   const [selectedImage, setSelectedImage] = useState(null)
+  const bgcolor = useSelector((state) => state.theme.value)
+  const txtcolor = useSelector((state) => state.theme.textcolor)
 
   const dispatch = useDispatch()
   const params = useParams()
@@ -51,7 +53,7 @@ export default function Productdetailspage() {
       <Protected>
         <ScrollTop />
         <ToastContainer />
-        <div className="bg-gray-50 py-10 mt-10">
+        <div className="py-10 mt-10" style={{ backgroundColor: bgcolor, color: txtcolor }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* Left - Image gallery */}
             {/* Left - Image gallery */}
@@ -98,7 +100,7 @@ export default function Productdetailspage() {
 
             {/* Right - Product details */}
             <div className="space-y-6">
-              <h1 className="text-3xl font-bold text-gray-900">{product.title}</h1>
+              <h1 className="text-3xl font-bold">{product.title}</h1>
 
               <div className="flex items-center">
                 {[0, 1, 2, 3, 4].map((rating) => (
@@ -110,7 +112,7 @@ export default function Productdetailspage() {
                     )}
                   />
                 ))}
-                <span className="ml-2 text-sm text-gray-600">({reviews.totalCount} reviews)</span>
+                <span className="ml-2 text-sm">({reviews.totalCount} reviews)</span>
               </div>
 
               <div className="flex items-center gap-4">
@@ -123,7 +125,7 @@ export default function Productdetailspage() {
               {/* Color options */}
               {product.colors?.length > 0 && (
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-700 mb-1">Color</h3>
+                  <h3 className="text-sm font-semibold mb-1">Color</h3>
                   <RadioGroup value={selectedColor} onChange={setSelectedColor} className="flex gap-3">
                     {product.colors.map((color, i) => (
                       <RadioGroup.Option key={i} value={color}>
@@ -145,7 +147,7 @@ export default function Productdetailspage() {
               {/* Size options */}
               {product.sizes?.length > 0 && (
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-700 mb-1">Size</h3>
+                  <h3 className="text-sm font-semibold  mb-1">Size</h3>
                   <RadioGroup
                     value={selectedSize}
                     onChange={setSelectedSize}
@@ -159,7 +161,7 @@ export default function Productdetailspage() {
                               'flex items-center justify-center py-2 text-sm font-medium uppercase border rounded-md',
                               checked
                                 ? 'bg-indigo-600 text-white'
-                                : 'bg-white text-gray-800 hover:bg-gray-100',
+                                : '',
                               disabled && 'opacity-50 cursor-not-allowed'
                             )}
                           >
@@ -174,14 +176,14 @@ export default function Productdetailspage() {
 
               <button
                 onClick={handleCart}
-                className="mt-6 w-full bg-indigo-600 text-white py-3 rounded-md hover:bg-indigo-700 transition duration-200"
+                className="mt-6 w-full bg-indigo-600 py-3 rounded-md hover:bg-indigo-700 transition duration-200"
               >
                 Add to Cart
               </button>
 
               <div>
-                <h2 className="text-lg font-semibold text-gray-800 mt-6">Description</h2>
-                <p className="text-gray-600 mt-2">{product.description}</p>
+                <h2 className="text-lg font-semibold mt-6">Description</h2>
+                <p className="mt-2">{product.description}</p>
               </div>
             </div>
           </div>

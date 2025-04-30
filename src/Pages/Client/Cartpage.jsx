@@ -15,6 +15,8 @@ export default function Cartpage() {
   const navigate = useNavigate();
   const products = useSelector(selectCartItems);
   const user = useSelector(selectLoggedInUser)
+  const bgcolor = useSelector((state) => state.theme.value)
+  const txtcolor = useSelector((state) => state.theme.textcolor)
   // const products = useSelector((state) => state.product.data)
   const dispatch = useDispatch();
   const totalAmount = products.reduce((amount, item) => item.product.price * item.quantity + amount, 0);
@@ -39,7 +41,7 @@ export default function Cartpage() {
       <Dialog open={open} onClose={() => navigate('/')} className="relative z-50">
         <DialogBackdrop
           transition
-          className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-closed:opacity-0"
+          className="fixed inset-0 transition-opacity duration-500 ease-in-out data-closed:opacity-0"
         />
 
         <div className="fixed inset-0 overflow-hidden mt-10 ">
@@ -49,15 +51,15 @@ export default function Cartpage() {
                 transition
                 className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-closed:translate-x-full sm:duration-700"
               >
-                <div className="flex h-full flex-col overflow-y-scroll shadow-xl" style={{ backgroundColor: '#E1F0DA' }}>
+                <div className="flex h-full flex-col overflow-y-scroll shadow-xl"style={{ backgroundColor: bgcolor, color: txtcolor }} >
                   <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                     <div className="flex items-start justify-between">
-                      <DialogTitle className="text-lg font-medium text-gray-900">Shopping cart</DialogTitle>
+                      <DialogTitle className="text-lg font-medium">Shopping cart</DialogTitle>
                       <div className="ml-3 flex h-7 items-center">
                         <button
                           type="button"
                           onClick={() => navigate('/')}
-                          className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                          className="relative -m-2 p-2 "
                         >
                           <span className="absolute -inset-0.5" />
                           <span className="sr-only">Close panel</span>
@@ -81,7 +83,7 @@ export default function Cartpage() {
 
                               <div className="ml-4 flex flex-1 flex-col">
                                 <div>
-                                  <div className="flex justify-between text-base font-medium text-gray-900">
+                                  <div className="flex justify-between text-base font-medium">
                                     <h3>
                                       <a>{product.product.title}</a>
                                     </h3>
@@ -90,7 +92,7 @@ export default function Cartpage() {
                                   {/* <p className="mt-1 text-sm text-gray-500">{product.rating.rate}</p> */}
                                 </div>
                                 <div className="flex flex-1 items-end justify-between text-sm">
-                                  <p className="text-gray-500">Qty </p>
+                                  <p>Qty </p>
                                   <select value={product.quantity} onChange={(e) => handleQuantity(e, product)}>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -120,22 +122,22 @@ export default function Cartpage() {
                   </div>
 
                   <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                    <div className="flex justify-between text-base font-medium text-gray-900">
+                    <div className="flex justify-between text-base font-medium">
                       <p>Subtotal</p>
                       <p>{totalAmount.toFixed(2)}</p>
                       <p>Total Items</p>
                       <p>{totalItems}</p>
                     </div>
-                    <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                    <p className="mt-0.5 text-sm">Shipping and taxes calculated at checkout.</p>
                     <div className="mt-6">
                       <Link
                         to={'/Checkoutpage'}
-                        className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700"
+                        className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium  shadow-xs hover:bg-indigo-700"
                       >
                         Checkout
                       </Link>
                     </div>
-                    <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                    <div className="mt-6 flex justify-center text-center text-sm">
                       <p>
                         <Link to={'/'}>
                           <button

@@ -1,49 +1,50 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Pagenotfound from './Pages/Client/Pagenotfound';
-import Homepage from './Pages/Client/Homepage';
-import Cartpage from './Pages/Client/Cartpage';
-import Checkoutpage from './Pages/Client/Checkoutpage';
-import Loginpage from './Pages/Client/Loginpage';
-import Signuppage from './Pages/Client/Signuppage';
-import Productdetailspage from './Pages/Client/Productdetailspage';
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoggedInUser } from './Features/Authslice';
 import { fechItemByProductIdAsync } from './Features/Cartslice';
-import Ordersuccesspage from './Pages/Client/Ordersuccesspage';
-import Orderpage from './Pages/Client/Userorderpage';
-import Userprofilepage from './Pages/Client/Userprofilepage';
-import Logoutpage from './Pages/Client/Logoutpage';
-import Forgotpasswordpage from './Pages/Client/Forgotpasswordpage';
-import Adminhomepage from './Pages/Admin/Adminhomepage';
-import Adminproductformpage from './Pages/Admin/Adminproductformpage';
-import AdminOrders from './Pages/Admin/Adminorderpage';
 import { fetchLoggedInUserAsync, fetchUserOrderToAsync } from './Features/Userslice';
-import Admindashboardpage from './Pages/Admin/Admindashboardpage';
-import Adminproductdetailpage from './Pages/Admin/Adminproductdetailpage';
+import { BounceLoader } from 'react-spinners';
+
+// Lazy-loaded pages
+const Homepage = lazy(() => import('./Pages/Client/Homepage'));
+const Cartpage = lazy(() => import('./Pages/Client/Cartpage'));
+const Checkoutpage = lazy(() => import('./Pages/Client/Checkoutpage'));
+const Loginpage = lazy(() => import('./Pages/Client/Loginpage'));
+const Signuppage = lazy(() => import('./Pages/Client/Signuppage'));
+const Productdetailspage = lazy(() => import('./Pages/Client/Productdetailspage'));
+const Ordersuccesspage = lazy(() => import('./Pages/Client/Ordersuccesspage'));
+const Orderpage = lazy(() => import('./Pages/Client/Userorderpage'));
+const Userprofilepage = lazy(() => import('./Pages/Client/Userprofilepage'));
+const Logoutpage = lazy(() => import('./Pages/Client/Logoutpage'));
+const Forgotpasswordpage = lazy(() => import('./Pages/Client/Forgotpasswordpage'));
+const Pagenotfound = lazy(() => import('./Pages/Client/Pagenotfound'));
+
+// Admin Pages
+const Adminhomepage = lazy(() => import('./Pages/Admin/Adminhomepage'));
+const Adminproductformpage = lazy(() => import('./Pages/Admin/Adminproductformpage'));
+const AdminOrders = lazy(() => import('./Pages/Admin/Adminorderpage'));
+const Admindashboardpage = lazy(() => import('./Pages/Admin/Admindashboardpage'));
+const Adminproductdetailpage = lazy(() => import('./Pages/Admin/Adminproductdetailpage'));
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
-  console.log('User:', user);  // Log the user object to check its structure
 
   useEffect(() => {
-    if (user) {  // Check if user is defined and has an ID
-      // Fetch items based on the user ID
-      dispatch(fechItemByProductIdAsync(user.id));  // Pass user.id instead of the entire user object
-      dispatch(fetchLoggedInUserAsync(user.id));  // Fetch logged-in user details
-      dispatch(fetchUserOrderToAsync(user.id));  // Fetch user orders
+    if (user) {
+      dispatch(fechItemByProductIdAsync(user.id));
+      dispatch(fetchLoggedInUserAsync(user.id));
+      dispatch(fetchUserOrderToAsync(user.id));
     }
   }, [dispatch, user]);
 
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Suspense fallback={<div className="flex justify-center items-center"><BounceLoader color="#7fd4b8" /></div>}>
         <Routes>
           <Route path='/' element={<Homepage />} />
-
-          <Route path='*' element={<Pagenotfound />} />
           <Route path='/Cartpage' element={<Cartpage />} />
           <Route path='/Loginpage' element={<Loginpage />} />
           <Route path='/Signuppage' element={<Signuppage />} />
@@ -55,7 +56,6 @@ function App() {
           <Route path='/Logoutpage' element={<Logoutpage />} />
           <Route path='/Forgotpasswordpage' element={<Forgotpasswordpage />} />
 
-
           {/* Admin Routes */}
           <Route path='/Adminhomepage' element={<Adminhomepage />} />
           <Route path='/Admindashboardpage' element={<Admindashboardpage />} />
@@ -64,9 +64,10 @@ function App() {
           <Route path='/Adminorderpage' element={<AdminOrders />} />
           <Route path='/Adminproductdetailpage/:id' element={<Adminproductdetailpage />} />
 
+          <Route path='*' element={<Pagenotfound />} />
         </Routes>
-      </BrowserRouter>
-    </>
+      </Suspense>
+    </BrowserRouter>
   );
 }
 

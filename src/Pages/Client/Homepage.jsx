@@ -26,6 +26,7 @@ import { GridLoader } from 'react-spinners'
 import Carousle from './Carousle'
 import { selectLoggedInUser } from '../../Features/Authslice'
 import ScrollTop from '../../Components/Client/Common/Scolltop'
+import Serivespage from './Serivespage'
 
 const sortOptions = [
   { name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
@@ -43,6 +44,8 @@ export default function Homepage() {
   const [filter, setFilter] = useState({})
   const [sort, SetSort] = useState('')
   const user = useSelector(selectLoggedInUser);
+  const bgcolor = useSelector((state) => state.theme.value)
+  const txtcolor = useSelector((state) => state.theme.textcolor)
 
   const products = useSelector(selectallproducts);
   const category = useSelector(categories);
@@ -141,7 +144,7 @@ export default function Homepage() {
     <Layout>
       <Protected>
 
-        <div className="bg-gradient-to-br from-[#fbfff9] to-[white] mt-1">
+        <div className="mt-1" style={{ backgroundColor: bgcolor, color: txtcolor }}>
           <div>
 
             <Carousle />
@@ -156,14 +159,14 @@ export default function Homepage() {
               <div className="fixed inset-0 z-40 flex">
                 <DialogPanel
                   transition
-                  className="relative ml-auto flex size-full max-w-xs transform flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl transition duration-300 ease-in-out data-closed:translate-x-full"
+                  className="relative ml-auto flex size-full max-w-xs transform flex-col overflow-y-auto py-4 pb-12 shadow-xl transition duration-300 ease-in-out data-closed:translate-x-full"
                 >
                   <div className="flex items-center justify-between px-4">
-                    <h2 className="text-lg font-medium text-gray-900">Filters</h2>
+                    <h2 className="text-lg font-medium">Filters</h2>
                     <button
                       type="button"
                       onClick={() => setMobileFiltersOpen(false)}
-                      className="-mr-2 flex size-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
+                      className="-mr-2 flex size-10 items-center justify-center rounded-md p-2"
                     >
                       <span className="sr-only">Close menu</span>
                       <XMarkIcon aria-hidden="true" className="size-6" />
@@ -215,23 +218,23 @@ export default function Homepage() {
 
             <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex items-baseline justify-between border-b border-gray-200 pt-10 pb-6">
-                <h1 className="text-4xl font-bold tracking-tight text-gray-900">All Products</h1>
+                <h1 className="text-4xl font-bold tracking-tight">All Products</h1>
 
                 <div className="flex items-center">
                   <Menu as="div" className="relative inline-block text-left">
                     <div>
-                      <MenuButton className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                      <MenuButton className="group inline-flex justify-center text-sm font-medium">
                         Sort
                         <ChevronDownIcon
                           aria-hidden="true"
-                          className="-mr-1 ml-1 size-5 shrink-0 text-gray-400 group-hover:text-gray-500"
+                          className="-mr-1 ml-1 size-5 shrink-0"
                         />
                       </MenuButton>
                     </div>
 
                     <MenuItems
                       transition
-                      className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white ring-1 shadow-2xl ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+                      className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md ring-1 shadow-2xl ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
                     >
                       <div className="py-1">
                         {sortOptions.map((option) => (
@@ -355,26 +358,26 @@ export default function Homepage() {
               </section>
 
               {/* pagination here */}
-              <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+              <div className="flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6">
                 <div className="flex flex-1 justify-between sm:hidden">
                   <button
                     onClick={() => handlePage(null, page - 1)}
                     disabled={page === 1}
-                    className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                    className="relative inline-flex items-center rounded-md border border-gray-300 px-4 py-2 text-sm font-medium disabled:opacity-50"
                   >
                     Previous
                   </button>
                   <button
                     onClick={() => handlePage(null, page + 1)}
                     disabled={page >= Math.ceil(totalItems / itemsPerPage)}
-                    className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                    className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 px-4 py-2 text-sm font-medium disabled:opacity-50"
                   >
                     Next
                   </button>
                 </div>
                 <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm">
                       Showing <span className="font-medium">{totalItems ? (page - 1) * itemsPerPage + 1 : 0}</span> to{" "}
                       <span className="font-medium">{Math.min(page * itemsPerPage, totalItems)}</span> of{" "}
                       <span className="font-medium">{totalItems}</span> results
@@ -385,7 +388,7 @@ export default function Homepage() {
                       <button
                         onClick={() => handlePage(null, page - 1)}
                         disabled={page === 1}
-                        className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
+                        className="relative inline-flex items-center rounded-l-md px-2 py-2 ring-1 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
                       >
                         <span className="sr-only">Previous</span>
                         <ChevronLeftIcon aria-hidden="true" className="size-5" />
@@ -416,7 +419,7 @@ export default function Homepage() {
                             aria-current={page === pageNumber ? "page" : undefined}
                             className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${page === pageNumber
                               ? "bg-indigo-600 text-white focus-visible:outline-indigo-600 z-10"
-                              : "text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50"
+                              : ""
                               } focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2`}
                           >
                             {pageNumber}
@@ -441,6 +444,8 @@ export default function Homepage() {
 
           </div>
         </div>
+
+        <Serivespage />
 
       </Protected>
     </Layout>

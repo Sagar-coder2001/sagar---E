@@ -11,6 +11,8 @@ export default function UserProfile() {
   const userInfo = useSelector(selectUserInfo);
   const [selectedEditIndex, setSelectedEditIndex] = useState(-1);
   const [showAddAddressForm, setShowAddAddressForm] = useState(false);
+  const bgcolor = useSelector((state) => state.theme.value)
+  const txtcolor = useSelector((state) => state.theme.textcolor)
 
 
   const {
@@ -56,20 +58,20 @@ export default function UserProfile() {
       <Protected>
         <ScrollTop />
         <div>
-          <div className="mx-auto bg-white max-w-7xl px-4 sm:px-6 lg:px-8 mt-20">
-            <div className="bg-white shadow-lg rounded-2xl px-4 py-5 sm:px-6 md:px-8 lg:px-10 my-4 sm:my-6 mx-2 sm:mx-4 md:mx-8 border-t-4 border-red-500 w-full max-w-3xl mx-auto mt-5">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-gray-800 mb-4">
+          <div className="max-w-full px-4 sm:px-6 lg:px-8 pt-20" style={{ backgroundColor: bgcolor, color: txtcolor }}>
+            <div className="shadow-lg rounded-2xl px-4 py-5 sm:px-6 md:px-8 lg:px-10 my-4 sm:my-6 sm:mx-4 md:mx-8 border-t-4 border-red-500 w-full max-w-3xl mx-auto mt-5 shadow-amber-300">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
                 {/* Name: {userInfo ? userInfo.address[0].name : 'New User'} */}
                 Welcome Back!
               </h1>
 
-              <div className="text-sm sm:text-base md:text-lg text-gray-700 mb-4">
-                <span className="font-semibold text-gray-900">Email Address:</span>
+              <div className="text-sm sm:text-base md:text-lg mb-4">
+                <span className="font-semibold ">Email Address:</span>
                 <span className="ml-2 text-blue-700 break-words">{userInfo.email}</span>
               </div>
 
               {userInfo.role === 'admin' && (
-                <div className="text-sm sm:text-base md:text-lg text-gray-700">
+                <div className="text-sm sm:text-base md:text-lg">
                   <span className="font-semibold text-gray-900">Role:</span>
                   <span className="ml-2 text-red-700 capitalize">{userInfo.role}</span>
                 </div>
@@ -195,7 +197,7 @@ export default function UserProfile() {
 
               ) : null}
 
-<p className="mt-4 text-lg font-semibold text-gray-800">Your Addresses:</p>
+              <p className="mt-4 text-lg font-semibold">Your Addresses:</p>
 
               {
                 userInfo?.address && userInfo.address.length > 0 ? (
@@ -254,7 +256,7 @@ export default function UserProfile() {
 
                               <div>
                                 <label className="block text-sm font-medium text-gray-700">City</label>
-                                <input 
+                                <input
                                   {...register('city', { required: 'City is required' })}
                                   className="mt-1 w-full p-3 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                 />

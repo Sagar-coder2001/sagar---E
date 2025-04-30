@@ -47,7 +47,7 @@ export default function Navbar() {
 
   return (
     <Disclosure as="nav" >
-      <div className='fixed top-0 left-0  right-0 z-50' style={{ backgroundColor: role === 'admin' ? bgcolor : '#D4E7C5' }}>
+      <div className='fixed top-0 left-0  right-0 z-50' style={{ backgroundColor: bgcolor, color: textcolors }}>
 
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between z-300">
@@ -71,7 +71,7 @@ export default function Navbar() {
                 </Link>
 
               </div>
-              <div className='ml-3 p-2 text-gray-900 hover:bg-gray-700 hover:text-black rounded' style={{ backgroundColor: '#FDFAF6' }}>
+              <div className='ml-3 p-2 rounded' style={{ backgroundColor: '#FDFAF6', color: 'black' }}>
                 Ecommerce
               </div>
 
@@ -104,7 +104,7 @@ export default function Navbar() {
                       className="relative rounded-ful p-1 text-gray-800 hover:text-black focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden rounded-full" style={{ backgroundColor: '#FDFAF6' }}
                     >
                       <ShoppingCartIcon aria-hidden="true" className="size-6" />
-                      <span className='absolute -top-2.5 right-0 text-black'>{cartitem.length}</span>
+                      <span className='absolute -top-2.5 right-0 font-bold' style={{color:textcolors}}>{cartitem.length}</span>
                     </button>
                   )
                 }
@@ -113,7 +113,7 @@ export default function Navbar() {
               </Link>
       
 
-                    <Link to={'Loginpage'}>
+                    <Link to={'/Loginpage'}>
                       <button
                         type="button"
                         className="rounded px-3 py-2 text-sm font-medium text-black cursor-pointer ml-2"
@@ -123,9 +123,7 @@ export default function Navbar() {
                       </button>
                     </Link>
 
-                    {
-                      role === 'admin' && (
-                        <>
+              
                             {changeicon ? (
                       <MoonIcon
                         onClick={changeTheme}
@@ -137,11 +135,8 @@ export default function Navbar() {
                         className="h-5 w-5 text-gray-900 cursor-pointer mx-2"
                       />
                     )}
-                        </>
-                      )
-
                       
-                    }
+                  
                 
   
 
